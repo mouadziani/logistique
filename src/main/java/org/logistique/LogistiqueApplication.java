@@ -1,6 +1,6 @@
 package org.logistique;
 
-import org.logistique.dao.UserRepository;
+import org.logistique.dao.repositories.UserRepository;
 import org.logistique.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

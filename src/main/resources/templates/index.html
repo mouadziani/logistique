@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/master">
 <body>
-	test
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>liste des clients</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Nouveau Client <small class="pull-right"> <a
+					class="btn red btn-md" href="#" target="_self"> <i
+						class="fa fa-plus"></i> &nbsp; Liste des clients
+				</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Ajouter
+									nouveau client</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+									href="#"> </a>
+							</div>
+						</div>
+						<div class="portlet-body form"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
