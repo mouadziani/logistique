@@ -6,7 +6,6 @@ import org.logistique.entities.Chauffeur;
 import org.logistique.entities.Voyage;
 
 public interface IChauffeurDao {
-	
 	public List<Chauffeur> getAll();
 	public Chauffeur getChauffeurById(Long id);
 	public void addChauffeur(Chauffeur chauffeur);

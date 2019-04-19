@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/master">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Title -->
+		<title>Liste des autocars</title>
+	</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>Liste des autocars</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Autocars
+				<small class="pull-right"> 
+					<a class="btn red btn-md" href="#" target="_self"> 
+						<i class="fa fa-plus"></i> &nbsp; Nouvelle autocar
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet grey-cascade box">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject uppercase">
+									Liste des autocars
+								</span>
+							</div>
+							<div class="tools">
+		                        <a href="" class="fullscreen" data-original-title="Agrandir" title="Agrandir"> </a>
+		                    </div>
+						</div>
+						<div class="portlet-body">
+							<div class="row">
+								<div class="col-md-8">
+									<label>Mot de recherche</label>
+									<input type="text" name="query" class="form-control" placeholder="Chercher...">
+								</div>
+								<div class="col-md-2">
+									<label>Chercher par</label>
+									<select name="seracheBy" class="form-control">
+										<option value="">Matricule</option>
+										<option value="">Description</option>
+									</select>
+								</div>
+								<div class="col-md-2">
+									<label>.</label>
+									<button class="btn btn-warning btn-block">Chercher</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="portlet grey-cascade box">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject uppercase">
+									Liste des autocars
+								</span>
+							</div>
+							<div class="tools">
+		                        <a href="" class="fullscreen" data-original-title="Agrandir" title="Agrandir"> </a>
+		                    </div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-striped table-bordered dataTable">
+		                        <thead>
+		                            <tr>
+		                                <th>Matricule</th>
+		                                <th>Designation</th>
+		                                <th>Statut</th>
+		                                <th>Description de panne</th>
+		                                <th>Duree</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+			                        <tr th:each="autoCar:${autoCars}">
+			                            <td class="td-keys" th:text="${autoCar.matricule}"></td>
+			                            <td th:text="${autoCar.designation}"></td>
+			                            <td th:text="${autoCar.statut}"></td>
+			                            <td th:text="${autoCar.descriptionPanne}"></td>
+			                            <td th:text="${autoCar.duree}"></td>
+			                            <td class="td-actions">
+			                            	<a th:href="@{'/autocar/edit/' + ${autoCar.id}}" class="btn green-jungle btn-sm uppercase">
+			                                	<i class="fa fa-edit"></i>
+			                                </a>
+			                                <form th:action="@{ '/autocar/delete/' + ${ autoCar.id } }" style="display: inline-block" method="POST">
+									 			<input type="hidden" name="_method" value="DELETE">
+				                                <button class="btn red-flamingo btn-sm uppercase">
+				                                	<i class="fa fa-trash-o"></i>
+				                                </button>
+				                            </form>
+			                            </td>
+			                        </tr>
+		                        </tbody>
+		                    </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

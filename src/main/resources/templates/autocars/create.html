@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<!-- Title -->
-	<title>Ajouter nouveau chauffeur</title>
+	<title>Ajouter nouveau autocar</title>
 </head>
 <body>
 	<div layout:fragment="content">
@@ -16,7 +16,7 @@
 				<ul class="page-breadcrumb">
 					<li><a href="index.html">Tableau de bord</a> <i
 						class="fa fa-circle"></i></li>
-					<li><span>liste des chauffeurs</span></li>
+					<li><span>liste des autocars</span></li>
 				</ul>
 			</div>
 			<!-- END PAGE BAR -->
@@ -25,7 +25,7 @@
 				Nouveau Chauffeur 
 				<small class="pull-right"> 
 					<a class="btn green btn-md" href="#" target="_self"> 
-						<i class="fa fa-eye"></i> &nbsp; Liste des chauffeurs
+						<i class="fa fa-eye"></i> &nbsp; Liste des autocars
 					</a>
 				</small>
 			</h1>
@@ -36,14 +36,14 @@
 					<div class="portlet light ">
 						<div class="portlet-title">
 							<div class="caption">
-								<span class="caption-subject bold uppercase font-dark">Ajouter nouveau chauffeur</span>
+								<span class="caption-subject bold uppercase font-dark">Ajouter nouveau autocar</span>
 							</div>
 							<div class="actions">
 								<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>
 							</div>
 						</div>
 						<div class="portlet-body form">
-							<form th:action="@{ /chauffeur/store }" method="POST">
+							<form th:action="@{ /autocar/store }" method="POST">
 								<div class="form-group">
 									<label for="nom">Matricule</label> 
 									<input type="text" name="matricule" class="form-control" placeholder="Matricule">
@@ -51,24 +51,25 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="nom">Nom</label> 
-											<input type="text" name="nom" class="form-control" placeholder="Nom">
+											<label for="nom">Designation</label> 
+											<input type="text" name="designation" class="form-control" placeholder="Designation">
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<label for="nom">Prenom</label> 
-											<input type="text" name="prenom" class="form-control" placeholder="Prenom">
+											<label for="duree">Duree</label> 
+											<input type="text" name="duree" class="form-control" placeholder="Duree">
 										</div>
 									</div>
 								</div>
 								<div class="form-group">
-									<label for="nom">N°.Telephone</label> 
-									<input type="tel" name="tel" class="form-control" placeholder="N°.Telephone">
+									<label for="statut">Statut</label>
+									<br> 
+									<input type="checkbox" name="statut" class="make-switch" data-on-text="Oui" data-off-text="Non" data-on-color="success" data-size="large" data-off-color="danger" checked>
 								</div>
 								<div class="form-group">
-									<label for="">Adresse</label>
-									<textarea name="adresse" class="form-control" id="adresse" cols="30" rows="5" placeholder="Adresse"></textarea>
+									<label for="descriptionPanne">Description de panne</label>
+									<textarea name="descriptionPanne" class="form-control" id="descriptionPanne" cols="30" rows="5" placeholder="Description de panne"></textarea>
 								</div>
 								<div class="form-actions right">
 									<button type="button" class="btn default">Annuler</button>

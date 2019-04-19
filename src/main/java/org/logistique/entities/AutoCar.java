@@ -17,11 +17,11 @@ public class AutoCar implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	private String designation;
 	private String matricule;
+	private String designation;
+	private String descriptionPanne;
 	private boolean statut;
 	private double duree;
-	private String descriptionPanne;
 
 	public AutoCar() {
 	}
