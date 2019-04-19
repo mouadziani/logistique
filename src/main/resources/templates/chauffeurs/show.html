@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/master">
+<head>
+<meta charset="utf-8" />
+<!-- Title -->
+<title th:text="${'Chauffeur N°.' + chauffeur.matricule}"></title>
+</title>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>Chauffeur N° <span th:text="${chauffeur.matricule}"></span></span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Chauffeur N° <span th:text="${chauffeur.matricule}"></span> 
+				<small class="pull-right"> 
+					<a class="btn green btn-md" th:href="@{ /chauffeur/index }"
+						target="_self"> <i class="fa fa-eye"></i> &nbsp; Liste des chauffeurs
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="dashboard-stat2">
+						<div class="display">
+							<div class="number">
+								<h3 class="font-green-sharp">
+									<span data-counter="counterup">
+										<span data-counter="counterup" th:text="${voyages.size()}"></span>	
+									</span>
+								</h3>
+								<small>Nombre des voyages</small>
+							</div>
+							<div class="icon">
+								<i class="fa fa-truck"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="dashboard-stat2 ">
+						<div class="display">
+							<div class="number">
+								<h3 class="font-red-haze">
+									<span data-counter="counterup">
+										<span data-counter="counterup" th:text="${chauffeur.locations.size()}"></span>	
+									</span>
+								</h3>
+								<small>Nombre des locations</small>
+							</div>
+							<div class="icon">
+								<i class="fa fa-money"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Informations
+									de chauffeur</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+									href="#"> </a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-bordered">
+								<tr>
+									<td class="text-bold">Matricule</td>
+									<td>
+										<span class="text-primary" th:text="${chauffeur.matricule}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Nom complet</td>
+									<td>
+										<span class="text-primary" th:text="${chauffeur.nom + ' ' + chauffeur.prenom}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">N°.Telephone</td>
+									<td>
+										<span class="text-primary" th:text="${chauffeur.tel}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Adresse</td>
+									<td>
+										<span class="text-primary" th:text="${chauffeur.adresse}"></span>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Voyages</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+									href="#"> </a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-striped table-bordered">
+		                        <thead>
+		                            <tr>
+		                                <th>Date de voyage</th>
+		                                <th>Ligne</th>
+		                                <th>Chauffeur 1</th>
+		                                <th>Chauffeur 2</th>
+		                                <th>Autocar</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+			                        <tr th:each="voyage: ${voyages}">
+			                            <td th:text="${voyage.date}"></td>
+			                            <td th:text="${voyage.ligne.id}"></td>
+			                            <td th:text="${voyage.chauffeurPremier.nom}"></td>
+			                            <td th:text="${voyage.chauffeurDeuxieme.nom}"></td>
+			                            <td th:text="${voyage.autoCar.designation}"></td>
+			                        </tr>
+		                        </tbody>
+		                    </table>
+						</div>
+					</div>
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Locations</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+									href="#"> </a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-striped table-bordered">
+		                        <thead>
+		                            <tr>
+		                                <th>Intitule</th>
+		                                <th>Benificiaire</th>
+		                                <th>Date debut</th>
+		                                <th>Date Fin</th>
+		                                <th>Autocar</th>
+		                            </tr>
+		                        </thead>
+		                        <tbody>
+			                        <tr th:each="location: ${chauffeur.locations}">
+			                            <td class="td-keys" th:text="${location.intitule}"></td>
+			                            <td th:text="${location.benificiaire}"></td>
+			                            <td th:text="${location.dateDebut}"></td>
+			                            <td th:text="${location.dateFin}"></td>
+			                            <td th:text="${location.autoCar.designation}"></td>
+			                        </tr>
+		                        </tbody>
+		                    </table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

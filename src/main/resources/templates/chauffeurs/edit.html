@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html 	lang="en" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layouts/master">
+<head>
+	<meta charset="utf-8" />
+	<!-- Title -->
+	<title>Editer le chauffeur</title>
+</title>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>liste des chauffeurs</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Editer le Chauffeur <span th:text="${chauffeur.matricule}"></span>
+				<small class="pull-right"> 
+					<a class="btn green btn-md" href="#" target="_self"> 
+						<i class="fa fa-eye"></i> &nbsp; Liste des chauffeurs
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">
+									Editer les informations de Chauffeur <span th:text="${chauffeur.matricule}"></span>
+								</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<form th:action="@{ '/chauffeur/update/' + ${ chauffeur.id } }" method="POST">
+							 	<input type="hidden" name="_method" value="PUT">
+								<div class="form-group">
+									<label for="nom">Matricule</label> 
+									<input type="text" name="matricule" class="form-control" th:value="${chauffeur.matricule}" placeholder="Matricule">
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Nom</label> 
+											<input type="text" name="nom" class="form-control" th:value="${chauffeur.nom}" placeholder="Nom">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Prenom</label> 
+											<input type="text" name="prenom" class="form-control" th:value="${chauffeur.prenom}" placeholder="Prenom">
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="nom">N°.Telephone</label> 
+									<input type="tel" name="tel" class="form-control" th:value="${chauffeur.tel}" placeholder="N°.Telephone">
+								</div>
+								<div class="form-group">
+									<label for="">Adresse</label>
+									<textarea name="adresse" class="form-control" id="adresse" cols="30" rows="5" th:value="${chauffeur.nom}" placeholder="Adresse"></textarea>
+								</div>
+								<div class="form-actions right">
+									<button type="button" class="btn default">Annuler</button>
+									<button type="submit" class="btn green">
+										<i class="fa fa-check"></i> Enregistrer
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

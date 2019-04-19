@@ -3,10 +3,11 @@ package org.logistique.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.logistique.entities.Chauffeur;
+import org.logistique.entities.Voyage;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -46,5 +47,12 @@ public class ChauffeurDao implements IChauffeurDao {
 		if(chauffeur != null) {
 			entityManager.remove(chauffeur);
 		}
+	}
+
+	@Override
+	public List<Voyage> getVoyagesChauffeur(long id) {
+		Query query = entityManager.createQuery("SELECT v FROM Voyage v WHERE v.chauffeurPremier.id = :id OR v.chauffeurDeuxieme.id = :id");
+		query.setParameter("id", id);
+		return query.getResultList();
 	}	
 }
