@@ -11,4 +11,10 @@ public class AuthController {
 	{
 		return "auth/login";
 	}
+	
+//	@RequestMapping("/")
+//	public String index() 
+//	{
+//		return "dashboard/index";
+//	}
 }

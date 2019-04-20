@@ -4,6 +4,7 @@ import org.logistique.dao.IAutoCarDao;
 import org.logistique.dao.IChauffeurDao;
 import org.logistique.dao.ILigneDao;
 import org.logistique.dao.IVoyageDao;
+import org.logistique.entities.Ligne;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,10 @@ public class DashboardController {
 		model.addAttribute("lastChauffeurs", chauffeurDao.getLastChauffeurs(5));
 		model.addAttribute("lastLignes", ligneVoyageDao.getLastLignes(5));
 		model.addAttribute("lastAutocars", autocarDao.getLastAutocars(5));
+		
+		for(Ligne ligne: ligneVoyageDao.getLastLignes(5)) {
+			System.out.println(ligne.getId());
+		}
 		
 		return "dashboard/index";
 	}

@@ -20,8 +20,6 @@ public class LogistiqueApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		System.out.println("Created");
-		Chauffeur chauffeur = new Chauffeur(null, "Test", "Test", "Testsdhjqshfdhqsdf", "Tel", "adresse");
-		chauffeurDao.addChauffeur(chauffeur);
 	}
 
 }

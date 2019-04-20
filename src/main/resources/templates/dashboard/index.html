@@ -145,7 +145,7 @@
 	                        </tr>
 	                    </thead>
 	                    <tbody>
-	                        <tr th:each="ligne:${lignes}">
+	                        <tr th:each="ligne:${lastLignes}">
 	                            <td th:text="${ligne.villeDepart.nom}"></td>
 	                            <td th:text="${ligne.villeArrive.nom}"></td>
 	                            <td th:text="${#dates.format(ligne.dateDepart, 'dd/MM/yyyy') + ' à ' + ligne.heurDepart}"></td>

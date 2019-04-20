@@ -18,7 +18,7 @@
 				<br>
 				<li class="start"
 					th:classappend="${#request.getRequestURI() == '/' ? 'active open' : ''}">
-					<a th:href="@{ / }"> <i class="fa fa-file-o"></i> <span
+					<a th:href="@{ /dashboard }"> <i class="fa fa-file-o"></i> <span
 						class="title">Tableau de bord</span>
 				</a>
 				</li>
@@ -48,7 +48,7 @@
 				<li class="nav-item start"
 					th:classappend="${(#request.getRequestURI() == '/autocar/index' || #request.getRequestURI() == '/autocar/create') ? 'active' : ''}"><a
 					href="javascript:;" class="nav-link nav-toggle"> <i
-						class="fa fa-users"></i> <span class="title">Autocars</span> <span
+						class="fa fa-circle-o"></i> <span class="title">Autocars</span> <span
 						class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
@@ -68,7 +68,7 @@
 				<li class="nav-item start"
 					th:classappend="${(#request.getRequestURI() == '/ligne/index' || #request.getRequestURI() == '/ligne/create') ? 'active' : ''}"><a
 					href="javascript:;" class="nav-link nav-toggle"> <i
-						class="fa fa-users"></i> <span class="title">Lignes de
+						class="fa fa-circle-o"></i> <span class="title">Lignes de
 							voyages</span> <span class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
@@ -87,7 +87,7 @@
 				<li class="nav-item start"
 					th:classappend="${(#request.getRequestURI() == '/voyage/index' || #request.getRequestURI() == '/voyage/create') ? 'active' : ''}"><a
 					href="javascript:;" class="nav-link nav-toggle"> <i
-						class="fa fa-users"></i> <span class="title">Voyages</span> <span
+						class="fa fa-circle-o"></i> <span class="title">Voyages</span> <span
 						class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
@@ -106,7 +106,7 @@
 				<li class="nav-item start"
 					th:classappend="${(#request.getRequestURI() == '/controle-ligne/index' || #request.getRequestURI() == '/controle-ligne/create') ? 'active' : ''}"><a
 					href="javascript:;" class="nav-link nav-toggle"> <i
-						class="fa fa-users"></i> <span class="title">Controles
+						class="fa fa-circle-o"></i> <span class="title">Controles
 							lignes</span> <span class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
@@ -126,7 +126,7 @@
 				<li class="nav-item start"
 					th:classappend="${(#request.getRequestURI() == '/controle-voyage/index' || #request.getRequestURI() == '/controle-voyage/create') ? 'active' : ''}"><a
 					href="javascript:;" class="nav-link nav-toggle"> <i
-						class="fa fa-users"></i> <span class="title">Controles
+						class="fa fa-circle-o"></i> <span class="title">Controles
 							voyages</span> <span class="arrow"></span>
 				</a>
 					<ul class="sub-menu">

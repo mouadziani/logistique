@@ -23,7 +23,7 @@
 			<h1 class="page-title">
 				Autocars
 				<small class="pull-right"> 
-					<a class="btn red btn-md" th:href="@{ 'autocar/create' }" target="_self"> 
+					<a class="btn red btn-md" th:href="@{ /autocar/create }" target="_self"> 
 						<i class="fa fa-plus"></i> &nbsp; Nouvelle autocar
 					</a>
 				</small>
@@ -32,7 +32,7 @@
 			<!-- END PAGE HEADER-->
 			<div class="row">
 				<div class="col-md-12">
-					<div class="portlet grey-cascade box">
+<!-- 					<div class="portlet grey-cascade box">
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject uppercase">
@@ -63,7 +63,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="portlet grey-cascade box">
+ -->					<div class="portlet grey-cascade box">
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject uppercase">
@@ -97,7 +97,7 @@
 			                            	<a th:href="@{'/autocar/edit/' + ${autoCar.id}}" class="btn green-jungle btn-sm uppercase">
 			                                	<i class="fa fa-edit"></i>
 			                                </a>
-			                                <form th:action="@{ '/autocar/delete/' + ${ autoCar.id } }" style="display: inline-block" method="POST">
+			                                <form th:action="@{ autocar/delete + ${ autoCar.id } }" style="display: inline-block" method="POST">
 									 			<input type="hidden" name="_method" value="DELETE">
 				                                <button class="btn red-flamingo btn-sm uppercase">
 				                                	<i class="fa fa-trash-o"></i>

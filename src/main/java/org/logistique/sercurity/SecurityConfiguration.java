@@ -25,9 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin().loginPage("/login");
 		http.authorizeRequests()
-	    .antMatchers("/**").authenticated()
+	    .antMatchers("/dashboard").authenticated()
 	    .antMatchers("/login").permitAll()
 	    .and();
-//		http.authorizeRequests().antMatchers("/dashboard").hasRole("USER");
 	}
 }
