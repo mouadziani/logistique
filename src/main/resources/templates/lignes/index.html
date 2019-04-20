@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<!-- Title -->
-		<title>Liste des autocars</title>
+		<title>Liste des lignes de voyages</title>
 	</head>
 <body>
 	<div layout:fragment="content">
@@ -15,16 +15,16 @@
 				<ul class="page-breadcrumb">
 					<li><a href="index.html">Tableau de bord</a> <i
 						class="fa fa-circle"></i></li>
-					<li><span>Liste des autocars</span></li>
+					<li><span>Lignes de voyages</span></li>
 				</ul>
 			</div>
 			<!-- END PAGE BAR -->
 			<!-- BEGIN PAGE TITLE-->
 			<h1 class="page-title">
-				Autocars
+				Lignes de voyages
 				<small class="pull-right"> 
-					<a class="btn red btn-md" th:href="@{ 'autocar/create' }" target="_self"> 
-						<i class="fa fa-plus"></i> &nbsp; Nouvelle autocar
+					<a class="btn red btn-md" th:href="@{ /ligne/create }"> 
+						<i class="fa fa-plus"></i> &nbsp; Nouvelle ligne
 					</a>
 				</small>
 			</h1>
@@ -52,8 +52,17 @@
 								<div class="col-md-2">
 									<label>Chercher par</label>
 									<select name="seracheBy" class="form-control">
-										<option value="">Matricule</option>
-										<option value="">Description</option>
+										<option>Ville depart</option>
+		                                <option>Ville arrive</option>
+		                                <option>Ville escale</option>
+		                                <option>Date depart</option>
+		                                <option>Date arrive</option>
+		                                <option>Date retour</option>
+		                                <option>Duree voyage</option>
+		                                <option>Duree repos</option>
+		                                <option>Duree immob</option>
+		                                <option>Killometrage</option>
+		                                <option>Actions</option>
 									</select>
 								</div>
 								<div class="col-md-2">
@@ -67,7 +76,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject uppercase">
-									Liste des autocars
+									Liste des lignes de voyages
 								</span>
 							</div>
 							<div class="tools">
@@ -78,26 +87,36 @@
 							<table class="table table-striped table-bordered dataTable">
 		                        <thead>
 		                            <tr>
-		                                <th>Matricule</th>
-		                                <th>Designation</th>
-		                                <th>Statut</th>
-		                                <th>Description de panne</th>
-		                                <th>Duree</th>
+		                                <th>Ville depart</th>
+		                                <th>Ville arrive</th>
+		                                <th>Ville escale</th>
+		                                <th>Date depart</th>
+		                                <th>Date arrive</th>
+		                                <th>Date retour</th>
+		                                <th>Duree voyage</th>
+		                                <th>Duree repos</th>
+		                                <th>Duree immob</th>
+		                                <th>Killometrage</th>
 		                                <th>Actions</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
-			                        <tr th:each="autoCar:${autoCars}">
-			                            <td class="td-keys" th:text="${autoCar.matricule}"></td>
-			                            <td th:text="${autoCar.designation}"></td>
-			                            <td th:text="${autoCar.statut}"></td>
-			                            <td th:text="${autoCar.descriptionPanne}"></td>
-			                            <td th:text="${autoCar.duree}"></td>
+			                        <tr th:each="ligne:${lignes}">
+			                            <td th:text="${ligne.villeDepart.nom}"></td>
+			                            <td th:text="${ligne.villeArrive.nom}"></td>
+			                            <td th:text="${ligne.villeEscale.nom}"></td>
+			                            <td th:text="${#dates.format(ligne.dateDepart, 'dd/MM/yyyy') + ' à ' + ligne.heurDepart}"></td>
+			                            <td th:text="${#dates.format(ligne.dateArrive, 'dd/MM/yyyy') + ' à ' + ligne.heurArrive}"></td>
+			                            <td th:text="${#dates.format(ligne.dateRetour, 'dd/MM/yyyy') + ' à ' + ligne.heurRetour}"></td>
+			                            <td th:text="${ligne.dureeVoyage}"></td>
+			                            <td th:text="${ligne.dureeRepos}"></td>
+			                            <td th:text="${ligne.dureeImmob}"></td>
+			                            <td th:text="${ligne.kilometrage + ' Km'}"></td>
 			                            <td class="td-actions">
-			                            	<a th:href="@{'/autocar/edit/' + ${autoCar.id}}" class="btn green-jungle btn-sm uppercase">
+			                            	<a th:href="@{'/ligne/edit/' + ${ligne.id}}" class="btn green-jungle btn-sm uppercase">
 			                                	<i class="fa fa-edit"></i>
 			                                </a>
-			                                <form th:action="@{ '/autocar/delete/' + ${ autoCar.id } }" style="display: inline-block" method="POST">
+			                                <form th:action="@{ '/ligne/delete/' + ${ ligne.id } }" style="display: inline-block" method="POST">
 									 			<input type="hidden" name="_method" value="DELETE">
 				                                <button class="btn red-flamingo btn-sm uppercase">
 				                                	<i class="fa fa-trash-o"></i>

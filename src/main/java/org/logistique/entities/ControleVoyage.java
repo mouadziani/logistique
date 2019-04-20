@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ControlesLignes")
+@Table(name = "controles_voyages")
 public class ControleVoyage implements Serializable {
 
 	private static final long serialVersionUID = 1L;

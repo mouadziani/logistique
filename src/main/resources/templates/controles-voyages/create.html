@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html 	lang="en" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layouts/master">
+<head>
+	<meta charset="utf-8" />
+	<!-- Title -->
+	<title>Controle voyage</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>liste des controles voyages</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Nouveau controle de voyage
+				<small class="pull-right"> 
+					<a class="btn green btn-md" th:href="@{ /controle-voyage/create }"> 
+						<i class="fa fa-eye"></i> &nbsp; Liste des voyages
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Ajouter nouveau contole de voyage</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<form th:action="@{ /controle-voyage/store }" method="POST">
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Date de controle</label> 
+											<input type="date" name="date" class="form-control" placeholder="date">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-10">
+												<div class="form-group">
+													<label for="chauffeur1_id">Chauffeur 1</label> 
+													<select class="form-control select2" name="chauffeur1_id"  id="chauffeur1_id">
+												    	<option th:each="chauffeur : ${chauffeurs}" th:value="${chauffeur.id}" th:text="${chauffeur.nom}"></option>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>.</label> 
+													<a th:href="@{ /chauffeur/create }" class="btn btn-primary btn-block">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-10">
+												<div class="form-group">
+													<label for="chauffeur2_id">Chauffeur 2</label> 
+													<select class="form-control select2" name="chauffeur2_id"  id="chauffeur2_id">
+												    	<option th:each="chauffeur : ${chauffeurs}" th:value="${chauffeur.id}" th:text="${chauffeur.nom}"></option>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>.</label> 
+													<a th:href="@{ /chauffeur/create }" class="btn btn-primary btn-block">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-11">
+										<div class="form-group">
+											<label for="ligne_depart_id">Ligne depart</label> 
+											<select class="form-control select2" name="ligne_depart_id"  id="ligne_depart_id">
+										    	<option th:each="ligne : ${lignes}" th:value="${ligne.id}" th:text="${'De : ' + ligne.villeDepart.nom + ' Vers ' + ligne.villeArrive.nom}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="form-group">
+											<label>.</label> 
+											<a th:href="@{ /ligne/create }" class="btn btn-primary btn-block">
+												<i class="fa fa-plus"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-11">
+										<div class="form-group">
+											<label for="ligne_arrive_id">Ligne arrive</label> 
+											<select class="form-control select2" name="ligne_arrive_id"  id="ligne_arrive_id">
+										    	<option th:each="ligne : ${lignes}" th:value="${ligne.id}" th:text="${'De : ' + ligne.villeDepart.nom + ' Vers ' + ligne.villeArrive.nom}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="form-group">
+											<label>.</label> 
+											<a th:href="@{ /ligne/create }" class="btn btn-primary btn-block">
+												<i class="fa fa-plus"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-11">
+										<div class="form-group">
+											<label for="autocar_id">Autocar</label> 
+											<select class="form-control select2" name="autocar_id"  id="autocar_id">
+										    	<option th:each="autocar : ${autocars}" th:value="${autocar.id}" th:text="${autocar.matricule}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="form-group">
+											<label>.</label> 
+											<a th:href="@{ /autocar/create }" class="btn btn-primary btn-block">
+												<i class="fa fa-plus"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label>Observations</label> 
+									<textarea name="observation" id="" cols="30" rows="3" class="form-control"></textarea>
+								</div>
+								<table class="table table-striped table-bordered">
+									<thead>
+										<tr>
+											<th>Element</th>
+											<th>Etat</th>
+										</tr>
+										<tr>
+											<td>Fiche iteneraire</td>
+											<td>
+												<input type="checkbox" name="ficheIteneraire" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+										<tr>
+											<td>Feuille controle de bagage</td>
+											<td>
+												<input type="checkbox" name="feuilleControleBagage" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+										<tr>
+											<td>Presentation chauffeur</td>
+											<td>
+												<input type="checkbox" name="presentationChauffeur" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+										<tr>
+											<td>Climatisation</td>
+											<td>
+												<input type="checkbox" name="climatisation" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+										<tr>
+											<td>Chauffage</td>
+											<td>
+												<input type="checkbox" name="chauffage" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+										<tr>
+											<td>Proprete Autocar</td>
+											<td>
+												<input type="checkbox" name="propreteAutocar" class="make-switch" data-on-text="Ok" data-off-text="Ko" data-on-color="success" data-size="small" data-off-color="danger" checked>
+											</td>
+										</tr>
+									</thead>
+								</table>
+
+								<div class="form-actions right">
+									<button type="button" class="btn default">Annuler</button>
+									<button type="submit" class="btn green">
+										<i class="fa fa-check"></i> Enregistrer
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

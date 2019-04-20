@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/master">
+<head>
+<meta charset="utf-8" />
+<!-- Title -->
+<title th:text="${'Controle voyage N°.' + controle.id}"></title>
+</title>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>Details controle voyage N° <span th:text="${controle.id}"></span></span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Details controle voyage N° <span th:text="${controle.id}"></span> 
+				<small class="pull-right"> 
+					<a class="btn green btn-md" th:href="@{ /controle-voyage/index }"
+						target="_self"> <i class="fa fa-eye"></i> &nbsp; Liste des controles des lignes
+					</a>
+					<a class="btn red btn-md" th:href="@{ /controle-voyage/create }"
+						target="_self"> <i class="fa fa-plus"></i> &nbsp; Nouveau controle voyage
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Details controle voyage N° <span th:text="${controle.id}"></span></span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen"
+									href="#"> </a>
+							</div>
+						</div>
+						<div class="portlet-body">
+							<table class="table table-bordered">
+								<tr>
+									<td class="text-bold">Date de controle</td>
+									<td>
+										<span class="text-primary" th:text="${#dates.format(controle.date, 'dd/MM/yyyy')}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Chauffeur 1</td>
+									<td>
+										<span class="text-primary" th:text="${controle.chauffeurDeuxieme.prenom + ' ' + controle.chauffeurDeuxieme.nom}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Chauffeur 2</td>
+									<td>
+										<span class="text-primary" th:text="${controle.chauffeurPremier.prenom + ' ' + controle.chauffeurPremier.nom}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Ligne depart</td>
+									<td>
+										<span class="text-primary" th:text="${'De : ' + controle.ligneDepart.villeDepart.nom + ' Vers ' + controle.ligneDepart.villeArrive.nom}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Ligne d'arrive</td>
+									<td>
+										<span class="text-primary" th:text="${'De : ' + controle.ligneArrive.villeDepart.nom + ' Vers ' + controle.ligneArrive.villeArrive.nom}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Autocar</td>
+									<td>
+										<span class="text-primary" th:text="${controle.autoCar.designation}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Observations</td>
+									<td>
+										<span class="text-primary" th:text="${controle.observation}"></span>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Fiche iteneraire</td>
+									<td>
+										<div th:switch="${controle.ficheIteneraire}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Feuille controle de bagage</td>
+									<td>
+										<div th:switch="${controle.feuilleControleBagage}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Presentation chauffeur</td>
+									<td>
+										<div th:switch="${controle.presentationChauffeur}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Climatisation</td>
+									<td>
+										<div th:switch="${controle.climatisation}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Chauffage</td>
+									<td>
+										<div th:switch="${controle.chauffage}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td class="text-bold">Proprete autocar</td>
+									<td>
+										<div th:switch="${controle.propreteAutocar}"> 
+											<p th:case="true">Existe</p>
+											<p th:case="false">Non existe</p>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

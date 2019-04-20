@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layouts/master">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Title -->
+		<title>Tableau de bord</title>
+	</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+    <!-- BEGIN PAGE HEADER-->
+    <!-- BEGIN PAGE BAR -->
+    <div class="page-bar">
+        <ul class="page-breadcrumb">
+            <li>
+                <a th:href="@{ / }">Acceil</a>
+                <i class="fa fa-circle"></i>
+            </li>
+            <li>
+                <span>Tableau de bord</span>
+            </li>
+        </ul>
+    </div>
+    <!-- END PAGE BAR -->
+    <!-- BEGIN PAGE TITLE-->
+    <h1 class="page-title">
+        Tableau de bord 
+        <small>Statistques...</small>
+    </h1>
+    <!-- END PAGE TITLE-->
+    <!-- END PAGE HEADER-->
+    <!-- BEGIN DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-v2 dashboard-stat blue" href="#">
+                <div class="visual">
+                    <i class="fa icon-ghost"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span data-counter="counterup" th:text="${nbrVoyages}"></span>
+                    </div>
+                    <div class="desc">Tout les voyages</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-v2 dashboard-stat yellow-crusta" href="#">
+                <div class="visual">
+                    <i class="icon-map"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span data-counter="counterup" th:text="${nbrLigneVoyage}"></span></div>
+                    <div class="desc">Tout les voyages</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-v2 dashboard-stat green-meadow" href="#">
+                <div class="visual">
+                    <i class="icon-check"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span data-counter="counterup" th:text="${nbrAutocars}"></span></div>
+                    <div class="desc">Tout les autocars</div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <a class="dashboard-stat dashboard-stat-v2 dashboard-stat purple" href="#">
+                <div class="visual">
+                    <i class="icon-basket-loaded"></i>
+                </div>
+                <div class="details">
+                    <div class="number">
+                        <span data-counter="counterup" th:text="${nbrChauffeurs}"></span></div>
+                    <div class="desc">Tout les chauffeurs</div>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <!-- END DASHBOARD STATS 1-->
+    <div class="row">
+        <div class="col-md-6">
+            <div class="portlet box red ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject uppercase">Les 5 derniers voyages</span>
+                    </div>
+                    <div class="actions">
+                        <a th:href="@{ '/voyage/index' }" class="btn btn-default btn-sm">Touts les vouages</a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered dataTable">
+                        <thead>
+                            <tr>
+                                <th>Date de voyage</th>
+                                <th>Chauffeur 1</th>
+                                <th>Chauffeur 2</th>
+                                <th>Ville depart</th>
+                                <th>Ville arrive</th>
+                                <th>Autocar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+	                        <tr th:each="voyage:${lastVoyages}">
+	                            <td th:text="${#dates.format(voyage.date, 'dd/MM/yyyy')}"></td>
+	                            <td th:text="${voyage.chauffeurPremier.nom + ' ' + voyage.chauffeurPremier.prenom}"></td>
+	                            <td th:text="${voyage.chauffeurDeuxieme.nom + ' ' + voyage.chauffeurDeuxieme.prenom}"></td>
+	                            <td th:text="${voyage.ligne.villeDepart.nom}"></td>
+	                            <td th:text="${voyage.ligne.villeArrive.nom}"></td>
+	                            <td th:text="${voyage.autoCar.matricule}"></td>
+	                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="portlet box blue ">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject uppercase">Les 5 derniers lignes de voyage</span>
+                    </div>
+                    <div class="actions">
+                        <a th:href="@{ '/ligne/index' }" class="btn btn-default btn-sm">Touts les lignes vouages</a>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <table class="table table-striped table-bordered dataTable">
+	                    <thead>
+	                        <tr>
+	                            <th>Ville depart</th>
+	                            <th>Ville arrive</th>
+	                            <th>Date depart</th>
+	                            <th>Date arrive</th>
+	                            <th>Duree voyage</th>
+	                            <th>Killometrage</th>
+	                        </tr>
+	                    </thead>
+	                    <tbody>
+	                        <tr th:each="ligne:${lignes}">
+	                            <td th:text="${ligne.villeDepart.nom}"></td>
+	                            <td th:text="${ligne.villeArrive.nom}"></td>
+	                            <td th:text="${#dates.format(ligne.dateDepart, 'dd/MM/yyyy') + ' à ' + ligne.heurDepart}"></td>
+	                            <td th:text="${#dates.format(ligne.dateArrive, 'dd/MM/yyyy') + ' à ' + ligne.heurArrive}"></td>
+	                            <td th:text="${ligne.dureeVoyage}"></td>
+	                            <td th:text="${ligne.kilometrage + ' Km'}"></td>
+	                        </tr>
+	                    </tbody>
+	                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+	</div>
+</body>
+</html>

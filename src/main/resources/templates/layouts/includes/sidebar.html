@@ -13,26 +13,136 @@
 					</div>
 				</li>
 				<br>
-				<li class="heading">
-					<h3 class="uppercase">Commercial</h3>
+				<br>
+				<br>
+				<br>
+				<li class="start"
+					th:classappend="${#request.getRequestURI() == '/' ? 'active open' : ''}">
+					<a th:href="@{ / }"> <i class="fa fa-file-o"></i> <span
+						class="title">Tableau de bord</span>
+				</a>
 				</li>
-				<li class="nav-item start"><a href="javascript:;"
-					class="nav-link nav-toggle"> <i class="icon-settings"></i> <span
-						class="title">Demd. Aadministratives</span> <span class="arrow"></span>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/chauffeur/index' || #request.getRequestURI() == '/chauffeur/create') ? 'active open' : ''}">
+					<a href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Chauffeurs</span> <span
+						class="arrow"></span>
 				</a>
 					<ul class="sub-menu">
-						<li class="nav-item start"><a href="#" class="nav-link ">
-								<i class="icon-settings"></i> <span class="title">Liste
-									des demandes</span>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/chauffeur/index' ? 'active' : ''}">
+							<a th:href="@{ /chauffeur/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Liste des
+									chauffeurs</span>
+						</a>
+						</li>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/chauffeur/create' ? 'active' : ''}">
+							<a th:href="@{ /chauffeur/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouveau
+									chauffeur</span>
+						</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/autocar/index' || #request.getRequestURI() == '/autocar/create') ? 'active' : ''}"><a
+					href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Autocars</span> <span
+						class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/autocar/create' ? 'active' : ''}"><a
+							th:href="@{ /autocar/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Liste des
+									autocars</span>
 						</a></li>
-						<li class="nav-item start"><a href="#" class="nav-link ">
-								<i class="icon-plus"></i> <span class="title">Nouveau
-									demande</span>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/autocar/create' ? 'active' : ''}"><a
+							th:href="@{ /autocar/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouveau
+									autocar</span>
 						</a></li>
 					</ul></li>
-				<li class="start"><a href="#"> <i class="fa fa-file-o"></i>
-						<span class="title">Feuilles de temps</span>
-				</a></li>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/ligne/index' || #request.getRequestURI() == '/ligne/create') ? 'active' : ''}"><a
+					href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Lignes de
+							voyages</span> <span class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/ligne/create' ? 'active' : ''}"><a
+							th:href="@{ /ligne/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Lignes de
+									voyages</span>
+						</a></li>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/ligne/create' ? 'active' : ''}"><a
+							th:href="@{ /ligne/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouvelle ligne</span>
+						</a></li>
+					</ul></li>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/voyage/index' || #request.getRequestURI() == '/voyage/create') ? 'active' : ''}"><a
+					href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Voyages</span> <span
+						class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/voyage/create' ? 'active' : ''}"><a
+							th:href="@{ /voyage/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Liste des
+									voyages</span>
+						</a></li>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/voyage/create' ? 'active' : ''}"><a
+							th:href="@{ /voyage/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouveau voyage</span>
+						</a></li>
+					</ul></li>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/controle-ligne/index' || #request.getRequestURI() == '/controle-ligne/create') ? 'active' : ''}"><a
+					href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Controles
+							lignes</span> <span class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/controle-ligne/create' ? 'active' : ''}"><a
+							th:href="@{ /controle-ligne/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Controles
+									lignes</span>
+						</a></li>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/controle-ligne/create' ? 'active' : ''}"><a
+							th:href="@{ /controle-ligne/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouveau
+									controle de ligne</span>
+						</a></li>
+					</ul></li>
+				<li class="nav-item start"
+					th:classappend="${(#request.getRequestURI() == '/controle-voyage/index' || #request.getRequestURI() == '/controle-voyage/create') ? 'active' : ''}"><a
+					href="javascript:;" class="nav-link nav-toggle"> <i
+						class="fa fa-users"></i> <span class="title">Controles
+							voyages</span> <span class="arrow"></span>
+				</a>
+					<ul class="sub-menu">
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/controle-voyage/create' ? 'active' : ''}"><a
+							th:href="@{ /controle-voyage/index }" class="nav-link "> <i
+								class="icon-users"></i> <span class="title">Controles
+									voyages</span>
+						</a></li>
+						<li class="nav-item start"
+							th:classappend="${#request.getRequestURI() == '/controle-voyage/create' ? 'active' : ''}"><a
+							th:href="@{ /controle-voyage/create }" class="nav-link "> <i
+								class="icon-plus"></i> <span class="title">Nouveau
+									controle de voyage</span>
+						</a></li>
+					</ul></li>
 			</ul>
 			<!-- END SIDEBAR MENU -->
 			<!-- END SIDEBAR MENU -->

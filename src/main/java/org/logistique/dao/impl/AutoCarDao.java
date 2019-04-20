@@ -1,10 +1,11 @@
-package org.logistique.dao;
+package org.logistique.dao.impl;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.logistique.dao.IAutoCarDao;
 import org.logistique.entities.AutoCar;
 import org.logistique.entities.Chauffeur;
 import org.springframework.context.annotation.Primary;
@@ -46,6 +47,16 @@ public class AutoCarDao implements IAutoCarDao {
 		if(autoCar != null) {
 			entityManager.remove(autoCar);
 		}
+	}
+
+	@Override
+	public List<AutoCar> getLastAutocars(int length) {
+		return entityManager.createQuery("SELECT a FROM AutoCar a").setMaxResults(length).getResultList();
+	}
+
+	@Override
+	public int getCountAutocars() {
+		return ((Long) entityManager.createQuery("SELECT COUNT(a) FROM AutoCar a").getSingleResult()).intValue();
 	}
 
 }

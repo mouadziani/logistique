@@ -10,4 +10,6 @@ public interface IAutoCarDao {
 	public void addAutoCar(AutoCar autoCar);
 	public void updateAutoCar(AutoCar autoCar);
 	public void deleteAutoCar(Long id);
+	public List<AutoCar> getLastAutocars(int length);
+	public int getCountAutocars();
 }

@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<!-- Title -->
-		<title>Liste des autocars</title>
+		<title>Liste des voyages</title>
 	</head>
 <body>
 	<div layout:fragment="content">
@@ -15,16 +15,16 @@
 				<ul class="page-breadcrumb">
 					<li><a href="index.html">Tableau de bord</a> <i
 						class="fa fa-circle"></i></li>
-					<li><span>Liste des autocars</span></li>
+					<li><span>Voyages</span></li>
 				</ul>
 			</div>
 			<!-- END PAGE BAR -->
 			<!-- BEGIN PAGE TITLE-->
 			<h1 class="page-title">
-				Autocars
+				Voyages
 				<small class="pull-right"> 
-					<a class="btn red btn-md" th:href="@{ 'autocar/create' }" target="_self"> 
-						<i class="fa fa-plus"></i> &nbsp; Nouvelle autocar
+					<a class="btn red btn-md" th:href="@{ /voyage/create }"> 
+						<i class="fa fa-plus"></i> &nbsp; Nouveau voyage
 					</a>
 				</small>
 			</h1>
@@ -52,8 +52,9 @@
 								<div class="col-md-2">
 									<label>Chercher par</label>
 									<select name="seracheBy" class="form-control">
-										<option value="">Matricule</option>
-										<option value="">Description</option>
+										<option>Chauffeur</option>
+		                                <option>Date</option>
+		                                <option>Autocar</option>
 									</select>
 								</div>
 								<div class="col-md-2">
@@ -67,7 +68,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject uppercase">
-									Liste des autocars
+									Liste des voyages
 								</span>
 							</div>
 							<div class="tools">
@@ -78,26 +79,30 @@
 							<table class="table table-striped table-bordered dataTable">
 		                        <thead>
 		                            <tr>
-		                                <th>Matricule</th>
-		                                <th>Designation</th>
-		                                <th>Statut</th>
-		                                <th>Description de panne</th>
-		                                <th>Duree</th>
+		                                <th>Date de voyage</th>
+		                                <th>Chauffeur 1</th>
+		                                <th>Chauffeur 2</th>
+		                                <th>Ville depart</th>
+		                                <th>Ville arrive</th>
+		                                <th>Autocar</th>
+		                                <th>Duree voyage</th>
 		                                <th>Actions</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
-			                        <tr th:each="autoCar:${autoCars}">
-			                            <td class="td-keys" th:text="${autoCar.matricule}"></td>
-			                            <td th:text="${autoCar.designation}"></td>
-			                            <td th:text="${autoCar.statut}"></td>
-			                            <td th:text="${autoCar.descriptionPanne}"></td>
-			                            <td th:text="${autoCar.duree}"></td>
+			                        <tr th:each="voyage:${voyages}">
+			                            <td th:text="${#dates.format(voyage.date, 'dd/MM/yyyy')}"></td>
+			                            <td th:text="${voyage.chauffeurPremier.nom + ' ' + voyage.chauffeurPremier.prenom}"></td>
+			                            <td th:text="${voyage.chauffeurDeuxieme.nom + ' ' + voyage.chauffeurDeuxieme.prenom}"></td>
+			                            <td th:text="${voyage.ligne.villeDepart.nom}"></td>
+			                            <td th:text="${voyage.ligne.villeArrive.nom}"></td>
+			                            <td th:text="${voyage.autoCar.matricule}"></td>
+			                            <td th:text="${voyage.ligne.dureeVoyage}"></td>
 			                            <td class="td-actions">
-			                            	<a th:href="@{'/autocar/edit/' + ${autoCar.id}}" class="btn green-jungle btn-sm uppercase">
+			                            	<a th:href="@{'/voyage/edit/' + ${voyage.id}}" class="btn green-jungle btn-sm uppercase">
 			                                	<i class="fa fa-edit"></i>
 			                                </a>
-			                                <form th:action="@{ '/autocar/delete/' + ${ autoCar.id } }" style="display: inline-block" method="POST">
+			                                <form th:action="@{ '/voyage/delete/' + ${ voyage.id } }" style="display: inline-block" method="POST">
 									 			<input type="hidden" name="_method" value="DELETE">
 				                                <button class="btn red-flamingo btn-sm uppercase">
 				                                	<i class="fa fa-trash-o"></i>

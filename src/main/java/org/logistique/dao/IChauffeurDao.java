@@ -12,4 +12,6 @@ public interface IChauffeurDao {
 	public void updateChauffeur(Chauffeur chauffeur);
 	public void deleteChauffeur(Long id);	
 	public List<Voyage> getVoyagesChauffeur(long id);
+	public List<Chauffeur> getLastChauffeurs(int length);
+	public int getCountChauffeurs();
 }

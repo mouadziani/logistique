@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html 	lang="en" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layouts/master">
+<head>
+	<meta charset="utf-8" />
+	<!-- Title -->
+	<title>Ajouter nouveau voyage</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>liste des voyages</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Nouveau voyage 
+				<small class="pull-right"> 
+					<a class="btn green btn-md" th:href="@{ /voyage/index }"> 
+						<i class="fa fa-eye"></i> &nbsp; Liste des voyages
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Ajouter nouveau voyage</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<form th:action="@{ /voyage/store }" method="POST">
+								<div class="form-group">
+									<label>Date de voyage</label> 
+									<input type="date" name="date" class="form-control" placeholder="Date de voyage">
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-10">
+												<div class="form-group">
+													<label for="chauffeur1_id">Chauffeur 1</label> 
+													<select class="form-control select2" name="chauffeur1_id"  id="chauffeur1_id">
+												    	<option th:each="chauffeur : ${chauffeurs}" th:value="${chauffeur.id}" th:text="${chauffeur.nom}"></option>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>.</label> 
+													<a th:href="@{ /chauffeur/create }" class="btn btn-primary btn-block">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="row">
+											<div class="col-md-10">
+												<div class="form-group">
+													<label for="chauffeur2_id">Chauffeur 2</label> 
+													<select class="form-control select2" name="chauffeur2_id"  id="chauffeur2_id">
+												    	<option th:each="chauffeur : ${chauffeurs}" th:value="${chauffeur.id}" th:text="${chauffeur.nom}"></option>
+												    </select>
+												</div>
+											</div>
+											<div class="col-md-2">
+												<div class="form-group">
+													<label>.</label> 
+													<a th:href="@{ /chauffeur/create }" class="btn btn-primary btn-block">
+														<i class="fa fa-plus"></i>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-11">
+										<div class="form-group">
+											<label for="ligne_id">Ligne</label> 
+											<select class="form-control select2" name="ligne_id"  id="ligne_id">
+										    	<option th:each="ligne : ${lignes}" th:value="${ligne.id}" th:text="${'De : ' + ligne.villeDepart.nom + ' Vers ' + ligne.villeArrive.nom}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="form-group">
+											<label>.</label> 
+											<a th:href="@{ /ligne/create }" class="btn btn-primary btn-block">
+												<i class="fa fa-plus"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-11">
+										<div class="form-group">
+											<label for="autocar_id">Autocar</label> 
+											<select class="form-control select2" name="autocar_id"  id="autocar_id">
+										    	<option th:each="autocar : ${autocars}" th:value="${autocar.id}" th:text="${autocar.matricule}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-1">
+										<div class="form-group">
+											<label>.</label> 
+											<a th:href="@{ /autocar/create }" class="btn btn-primary btn-block">
+												<i class="fa fa-plus"></i>
+											</a>
+										</div>
+									</div>
+								</div>
+								<div class="form-actions right">
+									<button type="button" class="btn default">Annuler</button>
+									<button type="submit" class="btn green">
+										<i class="fa fa-check"></i> Enregistrer
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

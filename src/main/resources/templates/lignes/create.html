@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html 	lang="en" 
+		xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorator="layouts/master">
+<head>
+	<meta charset="utf-8" />
+	<!-- Title -->
+	<title>Ajouter nouveau ligne</title>
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="page-content">
+			<!-- BEGIN PAGE HEADER-->
+			<!-- BEGIN PAGE BAR -->
+			<div class="page-bar">
+				<ul class="page-breadcrumb">
+					<li><a href="index.html">Tableau de bord</a> <i
+						class="fa fa-circle"></i></li>
+					<li><span>liste des lignes de voyages</span></li>
+				</ul>
+			</div>
+			<!-- END PAGE BAR -->
+			<!-- BEGIN PAGE TITLE-->
+			<h1 class="page-title">
+				Nouveau Chauffeur 
+				<small class="pull-right"> 
+					<a class="btn green btn-md" th:href="@{ /ligne/index }" target="_self"> 
+						<i class="fa fa-eye"></i> &nbsp; Liste des lignes de voyages
+					</a>
+				</small>
+			</h1>
+			<!-- END PAGE TITLE-->
+			<!-- END PAGE HEADER-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="portlet light ">
+						<div class="portlet-title">
+							<div class="caption">
+								<span class="caption-subject bold uppercase font-dark">Ajouter nouvelle ligne</span>
+							</div>
+							<div class="actions">
+								<a class="btn btn-circle btn-icon-only btn-default fullscreen" href="#"></a>
+							</div>
+						</div>
+						<div class="portlet-body form">
+							<form th:action="@{ /ligne/store }" method="POST">
+								<div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="ville_depart_id">Ville de depart</label> 
+											<select class="form-control select2" name="ville_depart_id"  id="ville_depart_id">
+										    	<option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="ville_arrive_id">Ville d'arrive</label> 
+											<select class="form-control select2" name="ville_arrive_id"  id="ville_arrive_id">
+										    	<option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+										    </select>
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="ville_escale_id">Ville escale</label> 
+											<select class="form-control select2" name="ville_escale_id"  id="ville_escale_id">
+										    	<option th:each="ville : ${villes}" th:value="${ville.id}" th:text="${ville.nom}"></option>
+										    </select>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Date de depart</label> 
+											<input type="date" name="date_depart" class="form-control" placeholder="Date de depart">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Heure de depart</label> 
+											<input type="text" name="heur_depart" class="form-control" placeholder="Heure de depart">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Date d'arrive</label> 
+											<input type="date" name="date_arrive" class="form-control" placeholder="Date d'arrive">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Heure d'arrive</label> 
+											<input type="text" name="heur_arrive" class="form-control" placeholder="Heure d'arrive">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Date de retour</label> 
+											<input type="date" name="date_retour" class="form-control" placeholder="Date de retour">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<label for="nom">Heure de retour</label> 
+											<input type="text" name="heur_retour" class="form-control" placeholder="Heure de retour">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="nom">Duree de voyage</label> 
+											<input type="text" name="duree_voyage" class="form-control" placeholder="Duree de voyage">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="nom">Duree de repos</label> 
+											<input type="text" name="duree_repos" class="form-control" placeholder="Duree de repos">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="nom">Duree de immob</label> 
+											<input type="text" name="duree_immob" class="form-control" placeholder="Duree de immob">
+										</div>
+									</div>
+									<div class="col-md-3">
+										<div class="form-group">
+											<label for="nom">Killometrage</label> 
+											<input type="text" name="killometrage" class="form-control" placeholder="Killometrage">
+										</div>
+									</div>
+								</div>
+								<div class="form-actions right">
+									<button type="button" class="btn default">Annuler</button>
+									<button type="submit" class="btn green">
+										<i class="fa fa-check"></i> Enregistrer
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

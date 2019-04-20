@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<!-- Title -->
-		<title>Liste des autocars</title>
+		<title>Liste des controles de lignes</title>
 	</head>
 <body>
 	<div layout:fragment="content">
@@ -15,16 +15,16 @@
 				<ul class="page-breadcrumb">
 					<li><a href="index.html">Tableau de bord</a> <i
 						class="fa fa-circle"></i></li>
-					<li><span>Liste des autocars</span></li>
+					<li><span>Liste des controles de lignes</span></li>
 				</ul>
 			</div>
 			<!-- END PAGE BAR -->
 			<!-- BEGIN PAGE TITLE-->
 			<h1 class="page-title">
-				Autocars
+				Controles des lignes
 				<small class="pull-right"> 
-					<a class="btn red btn-md" th:href="@{ 'autocar/create' }" target="_self"> 
-						<i class="fa fa-plus"></i> &nbsp; Nouvelle autocar
+					<a class="btn red btn-md" th:href="@{ 'controle-ligne/index' }"> 
+						<i class="fa fa-plus"></i> &nbsp; Nouveau controle de ligne
 					</a>
 				</small>
 			</h1>
@@ -67,7 +67,7 @@
 						<div class="portlet-title">
 							<div class="caption">
 								<span class="caption-subject uppercase">
-									Liste des autocars
+									Liste des controles de lignes
 								</span>
 							</div>
 							<div class="tools">
@@ -78,26 +78,27 @@
 							<table class="table table-striped table-bordered dataTable">
 		                        <thead>
 		                            <tr>
-		                                <th>Matricule</th>
-		                                <th>Designation</th>
-		                                <th>Statut</th>
-		                                <th>Description de panne</th>
-		                                <th>Duree</th>
+		                                <th>Date de contole</th>
+		                                <th>Heur de contole</th>
+		                                <th>Lieu</th>
+		                                <th>Ligne</th>
+		                                <th>Autocar</th>
 		                                <th>Actions</th>
 		                            </tr>
 		                        </thead>
 		                        <tbody>
-			                        <tr th:each="autoCar:${autoCars}">
-			                            <td class="td-keys" th:text="${autoCar.matricule}"></td>
-			                            <td th:text="${autoCar.designation}"></td>
-			                            <td th:text="${autoCar.statut}"></td>
-			                            <td th:text="${autoCar.descriptionPanne}"></td>
-			                            <td th:text="${autoCar.duree}"></td>
+			                        <tr th:each="controle: ${controles}">
+			                            <td th:text="${#dates.format(controle.date, 'dd/MM/yyyy')}"></td>
+			                            <td th:text="${controle.heur}"></td>
+			                            <td th:text="${controle.lieu}"></td>
+			                            <td th:text="${'De : ' + controle.ligne.villeDepart.nom + ' Vers ' + controle.ligne.villeArrive.nom}"></td>
+			                            <td th:text="${controle.autoCar.designation}"></td>
 			                            <td class="td-actions">
-			                            	<a th:href="@{'/autocar/edit/' + ${autoCar.id}}" class="btn green-jungle btn-sm uppercase">
+			                            	<a th:href="@{'/controle-ligne/show/' + ${controle.id}}" class="btn blue btn-sm uppercase">Details</a>
+			                            	<a th:href="@{'/controle-ligne/edit/' + ${controle.id}}" class="btn green-jungle btn-sm uppercase">
 			                                	<i class="fa fa-edit"></i>
 			                                </a>
-			                                <form th:action="@{ '/autocar/delete/' + ${ autoCar.id } }" style="display: inline-block" method="POST">
+			                                <form th:action="@{ '/controle-ligne/delete/' + ${ controle.id } }" style="display: inline-block" method="POST">
 									 			<input type="hidden" name="_method" value="DELETE">
 				                                <button class="btn red-flamingo btn-sm uppercase">
 				                                	<i class="fa fa-trash-o"></i>
