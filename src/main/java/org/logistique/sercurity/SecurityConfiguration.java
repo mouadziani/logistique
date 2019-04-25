@@ -25,8 +25,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.formLogin().loginPage("/login");
 		http.authorizeRequests()
-	    .antMatchers("/dashboard").authenticated()
-	    .antMatchers("/login").permitAll()
+	    .antMatchers("/dashboard")
+	    .antMatchers("/chauffeur/**")
+	    .antMatchers("/autocar/**")
+	    .antMatchers("/voyage/**")
+	    .antMatchers("/controle-voyage/**")
+	    .antMatchers("/controle-line/**")
+	    .antMatchers("/ligne/**")
+	    .authenticated()
+	    .antMatchers("/login")
+	    .permitAll()
 	    .and();
 	}
 }
